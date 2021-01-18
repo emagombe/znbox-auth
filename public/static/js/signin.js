@@ -16,7 +16,7 @@
 /***/ ((module) => {
 
 "use strict";
-eval("module.exports = JSON.parse(\"{\\\"ajax\\\":{\\\"url\\\":\\\"http://localhost\\\"}}\");\n\n//# sourceURL=webpack://znbox-auth/./config.json?");
+eval("module.exports = JSON.parse(\"{\\\"ajax\\\":{\\\"url\\\":\\\"http://localhost/api\\\"}}\");\n\n//# sourceURL=webpack://znbox-auth/./config.json?");
 
 /***/ }),
 

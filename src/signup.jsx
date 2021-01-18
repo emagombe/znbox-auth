@@ -108,7 +108,7 @@ class SignUp extends Component {
 			this.setState({ error_message: null });
 			this.setState({ success_message: null });
 
-			fetch(`${config.ajax.url}/api/account_create`, {
+			fetch(`${config.ajax.url}/register`, {
 				method: 'post',
 				body: form,
 			}).then(res => res.json()).then(data => {
@@ -144,7 +144,7 @@ class SignUp extends Component {
 		const form = new FormData();
 		form.append('data', JSON.stringify(e.profileObj));
 
-		fetch(`${config.ajax.url}/api/account_create/external-api`, {
+		fetch(`${config.ajax.url}/register/external-api`, {
 			method: 'post',
 			body: form,
 		}).then(res => res.json()).then(data => {
@@ -154,7 +154,6 @@ class SignUp extends Component {
 				this.setState({ disabled: false });
 			} else if(data.status == 'ok') {
 				/* Authentication success */
-				localStorage.setItem('_mkssid', data.token);
 				window.location.href = '/';
 			} else {
 				this.setState({ error_message: message });
@@ -174,7 +173,7 @@ class SignUp extends Component {
 		const form = new FormData();
 		form.append('data', JSON.stringify(e.profileObj));
 
-		fetch(`${config.ajax.url}/api/account_create/external-api`, {
+		fetch(`${config.ajax.url}/register/external-api`, {
 			method: 'post',
 			body: form,
 		}).then(res => res.json()).then(data => {
@@ -184,7 +183,6 @@ class SignUp extends Component {
 				this.setState({ disabled: false });
 			} else if(data.status == 'ok') {
 				/* Authentication success */
-				localStorage.setItem('_mkssid', data.token);
 				window.location.href = '/';
 			} else {
 				this.setState({ error_message: message });
@@ -205,8 +203,9 @@ class SignUp extends Component {
 				<ThemeProvider theme={theme}>
 					<AppBar position="fixed">
 						<Toolbar>
+							<img src=""/>
 							<Typography variant="h5">
-								Musikhalif
+								ZNBOX
 							</Typography>
 						</Toolbar>
 					</AppBar>
@@ -224,7 +223,7 @@ class SignUp extends Component {
 										Create account
 									</Typography>
 									<Typography variant="subtitle1" className={ classes.subtitle }>
-										Host your musics and share to the world
+										Start by creating a new account
 									</Typography>
 									<div className={ classes.AuthButtons }>
 										<Grid
@@ -467,7 +466,7 @@ class SignUp extends Component {
 												}
 											/>
 											<Typography variant="caption" className={ classes.subtitle }>
-												I read and agree with the website <Link href="terms" color="secondary">Terms and conditions</Link>
+												I read and agree with the website <Link href="/terms" color="secondary">Terms and conditions</Link>
 											</Typography>
 										</Grid>
 										<Grid

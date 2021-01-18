@@ -1,5 +1,5 @@
 {
 	"ajax": {
-		"url": "http://localhost"
+		"url": "http://localhost/api"
 	}
 }
