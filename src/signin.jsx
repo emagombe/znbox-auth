@@ -1,9 +1,9 @@
 import React, { Fragment, Component } from 'react';
 import ReactDom from 'react-dom';
 
-/* Socket */
-// import io from 'socket.io-client';
-import config from '../config.json';
+import _config from '../config.json';
+
+const config = _config[_config.mode];
 
 /* Material components */
 import AppBar from '@material-ui/core/AppBar';
@@ -107,7 +107,7 @@ class SignIn extends Component {
 		form.append('email', this.state.email);
 		form.append('password', this.state.password);
 
-		fetch(`${config.ajax.url}/api/authentication`, {
+		fetch(`${config.base_url}/authentication`, {
 			method: 'post',
 			body: form,
 		}).then(res => res.json()).then(data => {
@@ -116,10 +116,9 @@ class SignIn extends Component {
 				const message = data.message;
 				this.setState({ error_message: message });
 				this.setState({ disabled: false });
-			} else if(data.status == 'ok') {
+			} else if(data.status == 'success') {
 				/* Authentication success */
-				localStorage.setItem('_mkssid', data.token);
-				window.location.href = '/';
+				alert("OK");
 			} else {
 				this.setState({ error_message: message });
 				this.setState({ disabled: false });
@@ -135,23 +134,24 @@ class SignIn extends Component {
 		const form = new FormData();
 		form.append('data', JSON.stringify(e.profileObj));
 
-		fetch(`${config.ajax.url}/api/authentication/external-api`, {
+		fetch(`${config.base_url}/authentication/google-external-api`, {
 			method: 'post',
 			body: form,
 		}).then(res => res.json()).then(data => {
+			console.log(data);
 			if(data.status == 'auth_failed') {
 				const message = data.message;
 				this.setState({ error_message: message });
 				this.setState({ disabled: false });
-			} else if(data.status == 'ok') {
+			} else if(data.status == 'success') {
 				/* Authentication success */
-				localStorage.setItem('_mkssid', data.token);
-				window.location.href = '/';
+				alert("OK");
 			} else {
 				this.setState({ error_message: message });
 				this.setState({ disabled: false });
 			}
 		}).catch(error => {
+			console.log(error);
 			this.setState({ error_message: `Failed to send request` });
 			this.setState({ disabled: false });
 		});
@@ -165,7 +165,7 @@ class SignIn extends Component {
 		const form = new FormData();
 		form.append('data', JSON.stringify(e.profileObj));
 
-		fetch(`${config.ajax.url}/api/authentication/external-api`, {
+		fetch(`${config.base_url}/authentication/external-api`, {
 			method: 'post',
 			body: form,
 		}).then(res => res.json()).then(data => {

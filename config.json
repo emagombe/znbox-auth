@@ -1,5 +1,9 @@
 {
-	"ajax": {
-		"url": "http://localhost/api"
-	}
+	"production": {
+		"base_url": "https://authapi.znbox.net"
+	},
+	"development": {
+		"base_url": "http://localhost/api"
+	},
+	"mode": "development"
 }
